@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './header.module.css'
-import { IAuthProps } from '../../component.props'
+import { IAuthProps, IDisplayProps } from '../../component.props'
 import { HeaderAuth } from '../headerAuth/HeaderAuth'
 
-export const Header: React.FC<IAuthProps> = (authData) => {
+export const Header: React.FC<IAuthProps & IDisplayProps> = (props) => {
   return (
     <header
       className={`${styles.header} row text-center text-white align-items-center`}
@@ -40,7 +40,7 @@ export const Header: React.FC<IAuthProps> = (authData) => {
         </nav>
       </div>
       <div className='col-sm-12 col-lg-3'>
-        <HeaderAuth isUser={authData.isUser} />
+        <HeaderAuth {...props} />
       </div>
     </header>
   )
