@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
-import { IAuthProps, IDisplayProps } from '../../component.props'
+import { IAuthProps, IOpener } from '../../component.props'
 import style from './headerAuth.module.css'
 
-export const HeaderAuth: React.FC<IAuthProps & IDisplayProps> = (props) => {
-
+export const HeaderAuth: React.FC<IAuthProps & IOpener> = (props) => {
   if (props.isUser) {
     return <p>User</p>
   }
@@ -13,7 +12,7 @@ export const HeaderAuth: React.FC<IAuthProps & IDisplayProps> = (props) => {
       <button
         type='button'
         className={`btn btn-light ${style.floated}`}
-        onClick={props.setDisplay}
+        onClick={props.open}
       >
         Войти
       </button>

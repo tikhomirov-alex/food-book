@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './header.module.css'
-import { IAuthProps, IDisplayProps } from '../../component.props'
+import { IAuthProps, IOpener } from '../../component.props'
 import { HeaderAuth } from '../headerAuth/HeaderAuth'
 
-export const Header: React.FC<IAuthProps & IDisplayProps> = (props) => {
+export const Header: React.FC<IAuthProps & IOpener> = (props) => {
   return (
     <header
       className={`${styles.header} row text-center text-white align-items-center`}

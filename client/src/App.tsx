@@ -7,21 +7,21 @@ import { LoginForm } from './components/loginForm/LoginForm'
 function App() {
   const isUser = false
   const routes = getRoutes(isUser)
-  const [displayLoginForm, setLoginDisplayForm] = useState(false)
 
+  const [displayLoginForm, setDisplayLoginForm] = useState<boolean>(false)
   const showLoginForm = () => {
-    setLoginDisplayForm(true)
+    setDisplayLoginForm(true)
   }
   const hideLoginForm = () => {
-    setLoginDisplayForm(false)
+    setDisplayLoginForm(false)
   }
 
   return (
     <Fragment>
-      <Header isUser={isUser} setDisplay={showLoginForm} />
+      <Header isUser={isUser} open={showLoginForm} />
       <Router>{routes}</Router>
 
-      {displayLoginForm ? <LoginForm setDisplay={hideLoginForm} /> : null}
+      <LoginForm isOpened={displayLoginForm} hide={hideLoginForm} />
     </Fragment>
   )
 }

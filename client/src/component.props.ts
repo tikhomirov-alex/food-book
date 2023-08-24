@@ -1,9 +1,12 @@
-import { SyntheticEvent } from 'react'
-
 export interface IAuthProps {
   isUser: boolean
 }
 
-export interface IDisplayProps {
-  setDisplay: () => void
+export interface IOpenableProps {
+  isOpened: boolean,
+  hide: () => void
+}
+
+export interface IOpener {
+  open: () => void
 }

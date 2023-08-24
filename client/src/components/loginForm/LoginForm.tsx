@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import styles from './loginForm.module.css'
-import { IDisplayProps } from '../../component.props'
+import { IOpenableProps } from '../../component.props'
 
-export const LoginForm: React.FC<IDisplayProps> = (props) => {
+export const LoginForm: React.FC<IOpenableProps> = (props) => {
+
+  if (!props.isOpened) {
+    return null
+  }
 
   return (
     <div className={styles.login_form}>
       <form className='text-white'>
-        <div className={styles.close_wrapper} onClick={props.setDisplay}>
+        <div className={styles.close_wrapper} onClick={props.hide}>
           <div className={styles.close}></div>
         </div>
         <div className='mb-3'>
