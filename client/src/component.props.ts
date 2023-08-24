@@ -7,6 +7,13 @@ export interface IOpenableProps {
   hide: () => void
 }
 
-export interface IOpener {
+export interface IOpenerProps {
   open: () => void
+}
+
+export interface IIconInput {
+  iconClasses: string,
+  inputType: 'text' | 'password',
+  placeholder: string,
+  id?: string
 }

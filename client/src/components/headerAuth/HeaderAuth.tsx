@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import { IAuthProps, IOpener } from '../../component.props'
+import { IAuthProps, IOpenerProps } from '../../component.props'
 import style from './headerAuth.module.css'
 
-export const HeaderAuth: React.FC<IAuthProps & IOpener> = (props) => {
+export const HeaderAuth: React.FC<IAuthProps & IOpenerProps> = (props) => {
   if (props.isUser) {
     return <p>User</p>
   }

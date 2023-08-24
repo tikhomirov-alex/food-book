@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import styles from './loginForm.module.css'
 import { IOpenableProps } from '../../component.props'
+import { IconInput } from '../iconInput/IconInput'
 
 export const LoginForm: React.FC<IOpenableProps> = (props) => {
 
@@ -14,31 +15,26 @@ export const LoginForm: React.FC<IOpenableProps> = (props) => {
         <div className={styles.close_wrapper} onClick={props.hide}>
           <div className={styles.close}></div>
         </div>
-        <div className='mb-3'>
-          <label htmlFor='exampleFormControlInput1' className='form-label'>
-            Email address
-          </label>
-          <input
-            type='email'
-            className='form-control'
-            id='login-email'
+        <div className='mb-1'>
+          <label htmlFor='login-email'>Email</label>
+          <IconInput
+            iconClasses='fa-solid fa-envelope'
+            inputType='text'
             placeholder='name@example.com'
+            id='login-email'
           />
         </div>
         <div className='mb-3'>
-          <label htmlFor='inputPassword5' className='form-label'>
-            Password
-          </label>
-          <input
-            type='password'
-            id='inputPassword5'
-            className='form-control'
-            placeholder='Введите пароль'
-            autoComplete='on'
+          <label htmlFor='login-password'>Password</label>
+          <IconInput
+            iconClasses='fa-solid fa-lock'
+            inputType='password'
+            placeholder='input password'
+            id='login-password'
           />
         </div>
         <div className='text-center'>
-          <input className='btn btn-primary' type='submit' value='Войти' />
+          <input className='btn btn-light' type='submit' value='Войти' />
         </div>
       </form>
     </div>
