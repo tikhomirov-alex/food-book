@@ -47,3 +47,7 @@ input[type=password]:focus {
   color: #fff;
   background-color: dodgerblue;
 }
+
+::placeholder { /* Most modern browsers support this now. */
+   color: #fff;
+}

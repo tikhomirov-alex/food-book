@@ -56,16 +56,12 @@ export const HeaderAuth: React.FC<IUserProps & IOpenerProps> = (props) => {
     <Fragment>
       <button
         type='button'
-        className={`btn btn-light ${style.floated}`}
-        onClick={props.open}
+        className='btn btn-primary'
+        data-bs-toggle='modal'
+        data-bs-target='#authModal'
       >
         Войти
       </button>
-      <a href='/register'>
-        <button type='button' className={`btn btn-primary ${style.floated}`}>
-          Регистрация
-        </button>
-      </a>
     </Fragment>
   )
 }

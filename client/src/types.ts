@@ -9,9 +9,10 @@ export type Method =
   | 'trace'
   | 'patch'
 
-export type LoginData = {
-  token: string | null,
+export type UserData = {
+  token: string | null
   userId: string | null
+  msg: string | null
 }
 
 export type AuthData = {

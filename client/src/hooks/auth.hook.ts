@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { LoginData } from '../types'
+import { UserData } from '../types'
 
 const storageName = 'userData'  
 
@@ -28,7 +28,7 @@ export const useAuth = () => {
       return
     } 
 
-    const data: LoginData = JSON.parse(userData)
+    const data: UserData = JSON.parse(userData)
     if (data && data.token && data.userId) {
       login(data.token, data.userId)
     }

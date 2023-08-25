@@ -14,8 +14,8 @@ export const signup: Controller = async (req, res) => {
       })
     }
 
-    const { email, password, username, firstname, lastname, city } = req.body
-    
+    const { email, password, username, firstname, lastname } = req.body
+
     const userAlreadyExists = await User.findOne({ email })
     if (userAlreadyExists) {
       return res.status(400).json({ msg: 'User already exists.' })
@@ -29,11 +29,22 @@ export const signup: Controller = async (req, res) => {
 
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
-    const user = new User({ username: name, email, password: hashedPassword, firstname, lastname, city })
+    const user = new User({
+      username: name,
+      email,
+      password: hashedPassword,
+      firstname,
+      lastname
+    })
 
     await user.save()
 
-    res.status(201).json({ user, msg: `User ${name} created.` })
+    const secret = process.env.JWT_SECRET || 'jwt_secret'
+    const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '4h' })
+
+    res
+      .status(201)
+      .json({ token, userId: user.id, msg: `User ${name} created.` })
   } catch (err) {
     res.status(500).json({ msg: `Server error: ${err}` })
   }
@@ -41,7 +52,6 @@ export const signup: Controller = async (req, res) => {
 
 export const login: Controller = async (req, res) => {
   try {
-
     console.log(req.body)
 
     const errors = validationResult(req)
@@ -66,14 +76,9 @@ export const login: Controller = async (req, res) => {
 
     const secret = process.env.JWT_SECRET || 'jwt_secret'
 
-    const token = jwt.sign(
-      {userId: user.id},
-      secret,
-      { expiresIn: '4h' }
-    )
+    const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '4h' })
 
     res.json({ token, userId: user.id })
-
   } catch (err) {
     res.status(500).json({ msg: `Server error: ${err}` })
   }
