@@ -3,10 +3,13 @@ import { Header } from './components/header/Header'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { getRoutes } from './routes'
 import { LoginForm } from './components/loginForm/LoginForm'
+import { useAuth } from './hooks/auth.hook'
+import { AuthContext } from './context/AuthContext'
 
 function App() {
-  const isUser = false
-  const routes = getRoutes(isUser)
+  const { token, login, logout, userId } = useAuth()
+  const isAuthenticated = !!token
+  const routes = getRoutes(isAuthenticated)
 
   const [displayLoginForm, setDisplayLoginForm] = useState<boolean>(false)
   const showLoginForm = () => {
@@ -17,12 +20,23 @@ function App() {
   }
 
   return (
-    <Fragment>
-      <Header isUser={isUser} open={showLoginForm} />
+    <AuthContext.Provider
+      value={{
+        token,
+        userId,
+        login,
+        logout,
+        isAuthenticated,
+      }}
+    >
+      {userId ?
+      <Header userId={userId} open={showLoginForm} /> :
+      <Header open={showLoginForm} /> }
+
       <Router>{routes}</Router>
 
       <LoginForm isOpened={displayLoginForm} hide={hideLoginForm} />
-    </Fragment>
+    </AuthContext.Provider>
   )
 }
 

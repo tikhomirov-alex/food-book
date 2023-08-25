@@ -9,7 +9,6 @@ export const getRoutes = (isUser: boolean) => {
   if (isUser) {
     return (
       <Routes>
-        <Route path='/' element={<MainPage />} />
         <Route path='/create' element={<CreateRecipePage />} />
       </Routes>
     )
