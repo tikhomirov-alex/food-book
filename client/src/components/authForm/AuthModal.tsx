@@ -2,17 +2,17 @@ import React from 'react'
 import { IOpenableProps } from '../../component.props'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
+import styles from './authModal.module.css'
 
 export const AuthModal: React.FC<IOpenableProps> = (props) => {
-
   return (
     <div
-      className='modal'
+      className={`modal ${styles.authModal}`}
       id='authModal'
       tabIndex={-1}
       aria-labelledby='authModalLabel'
+      data-bs-theme='blue'
       aria-hidden='true'
-      data-bs-theme='dark'
     >
       <div className='modal-dialog modal-dialog-centered'>
         <div className='modal-content'>
