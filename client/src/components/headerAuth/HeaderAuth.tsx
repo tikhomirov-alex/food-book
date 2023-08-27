@@ -1,16 +1,11 @@
 import React, { Fragment, useContext, useState } from 'react'
-import { IUserProps, IOpenerProps } from '../../component.props'
+import { IHeaderProps } from '../../component.props'
 import { useHttp } from '../../hooks/http.hook'
 import { AuthContext } from '../../context/AuthContext'
 import style from './headerAuth.module.css'
 
-export const HeaderAuth: React.FC<IUserProps & IOpenerProps> = (props) => {
+export const HeaderAuth: React.FC<IHeaderProps> = (props) => {
   const auth = useContext(AuthContext)
-
-  const { request } = useHttp()
-  const [user, setUser] = useState({
-    name: ''
-  })
 
   const logoutHandler = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault()
@@ -20,7 +15,11 @@ export const HeaderAuth: React.FC<IUserProps & IOpenerProps> = (props) => {
   if (props.userId) {
     return (
       <div className='floated'>
-        <img className={style.avatar} src='https://placehold.co/50x50.png' alt='avatar' />
+        <img
+          className={style.avatar}
+          src='https://placehold.co/50x50.png'
+          alt='avatar'
+        />
         <div className={`btn-group ${style.clicker}`} data-bs-theme='dark'>
           <div
             className='dropdown-toggle'
@@ -28,7 +27,7 @@ export const HeaderAuth: React.FC<IUserProps & IOpenerProps> = (props) => {
             data-bs-auto-close='outside'
             aria-expanded='false'
           >
-            Username
+            {props.username}
           </div>
           <ul className='dropdown-menu'>
             <li>
@@ -38,7 +37,7 @@ export const HeaderAuth: React.FC<IUserProps & IOpenerProps> = (props) => {
             </li>
             <li>
               <a className='dropdown-item' href='#'>
-                Настройки
+                Мои рецепты
               </a>
             </li>
             <li>

@@ -1,58 +1,60 @@
 import React from 'react'
-import { IOpenableProps } from '../../component.props'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
-import styles from './authModal.module.css'
 
-export const AuthModal: React.FC<IOpenableProps> = (props) => {
+export const AuthModal: React.FC = () => {
   return (
     <div
-      className={`modal ${styles.authModal}`}
+      className='modal'
       id='authModal'
       tabIndex={-1}
       aria-labelledby='authModalLabel'
-      data-bs-theme='blue'
       aria-hidden='true'
+      data-bs-theme='darkblue'
     >
       <div className='modal-dialog modal-dialog-centered'>
         <div className='modal-content'>
-          <div className='modal-header'>
-            <ul className='nav nav-fill nav-tabs mb-3' role='tablist'>
-              <li className='nav-item' role='presentation'>
-                <a
-                  className='nav-link active'
-                  id='fill-tab-0'
-                  data-bs-toggle='tab'
-                  href='#fill-tabpanel-0'
-                  role='tab'
-                  aria-controls='fill-tabpanel-0'
-                  aria-selected='true'
-                >
-                  {' '}
-                  Вход{' '}
-                </a>
-              </li>
-              <li className='nav-item' role='presentation'>
-                <a
-                  className='nav-link'
-                  id='fill-tab-1'
-                  data-bs-toggle='tab'
-                  href='#fill-tabpanel-1'
-                  role='tab'
-                  aria-controls='fill-tabpanel-1'
-                  aria-selected='false'
-                >
-                  {' '}
-                  Регистрация{' '}
-                </a>
-              </li>
-            </ul>
-            <button
-              type='button'
-              className='btn-close'
-              data-bs-dismiss='modal'
-              aria-label='Close'
-            ></button>
+          <div className='modal-header '>
+            <div className='col-11'>
+              <ul className='nav nav-tabs nav-fill mb-1' role='tablist'>
+                <li className='nav-item' role='presentation'>
+                  <a
+                    className='nav-link active'
+                    id='fill-tab-0'
+                    data-bs-toggle='tab'
+                    href='#fill-tabpanel-0'
+                    role='tab'
+                    aria-controls='fill-tabpanel-0'
+                    aria-selected='true'
+                  >
+                    {' '}
+                    Вход{' '}
+                  </a>
+                </li>
+                <li className='nav-item' role='presentation'>
+                  <a
+                    className='nav-link'
+                    id='fill-tab-1'
+                    data-bs-toggle='tab'
+                    href='#fill-tabpanel-1'
+                    role='tab'
+                    aria-controls='fill-tabpanel-1'
+                    aria-selected='false'
+                  >
+                    {' '}
+                    Регистрация{' '}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className='col-1 align-self-start'>
+              <button
+                type='button'
+                className='btn-close btn-close-white'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              ></button>
+            </div>
           </div>
           <div className='modal-body'>
             <div className='tab-content' id='tab-content'>

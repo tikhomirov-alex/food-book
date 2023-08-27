@@ -1,14 +1,12 @@
-export interface IUserProps {
+export interface IHeaderProps {
   userId?: string
+  username?: string
+  openModal?: () => void
 }
 
-export interface IOpenableProps {
-  isOpened: boolean
+export interface IModalManagementProps {
   hide: () => void
-}
-
-export interface IOpenerProps {
-  open: () => void
+  isOpened: boolean
 }
 
 export interface IIconInput {
@@ -18,4 +16,5 @@ export interface IIconInput {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   id?: string
   name?: string
+  required?: boolean
 }

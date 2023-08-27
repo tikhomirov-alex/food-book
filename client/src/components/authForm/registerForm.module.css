@@ -1,0 +1,6 @@
+label.required:after {
+  color: #BD1EA8;
+  content: ' *';
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

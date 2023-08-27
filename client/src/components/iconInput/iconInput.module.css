@@ -13,8 +13,8 @@ input[type=password] {
 
 input[type=text]:focus,
 input[type=password]:focus {
-  border-color: dodgerblue;
-  box-shadow: 0 0 8px 0 dodgerblue;
+  border-color: #BD1EA8;
+  box-shadow: 0 0 8px 0 #BD1EA8;
 }
 
 .inputWithIcon input[type=text],
@@ -41,9 +41,8 @@ input[type=password]:focus {
   border-radius: 4px 0 0 4px;
 }
 
-
 .inputWithIcon input[type=text]:focus + i,
 .inputWithIcon input[type=password]:focus + i {
   color: #fff;
-  background-color: dodgerblue;
+  background-color: #BD1EA8;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
 
 export const MainPage: React.FC = () => {
-  return <div>MainPage</div>
+  return <h1 className='text-white'>MainPage</h1>
 }

@@ -8,17 +8,9 @@ import { AuthContext } from './context/AuthContext'
 import { AuthModal } from './components/authForm/AuthModal'
 
 function App() {
-  const { token, login, logout, userId } = useAuth()
+  const { token, login, logout, userId, username } = useAuth()
   const isAuthenticated = !!token
   const routes = getRoutes(isAuthenticated)
-
-  const [displayLoginForm, setDisplayLoginForm] = useState<boolean>(false)
-  const showLoginForm = () => {
-    setDisplayLoginForm(true)
-  }
-  const hideLoginForm = () => {
-    setDisplayLoginForm(false)
-  }
 
   return (
     <AuthContext.Provider
@@ -28,16 +20,13 @@ function App() {
         login,
         logout,
         isAuthenticated,
+        username
       }}
     >
-      {userId ? (
-        <Header userId={userId} open={showLoginForm} />
-      ) : (
-        <Header open={showLoginForm} />
-      )}
+      {userId && username ? <Header userId={userId} username={username} /> : <Header />}
 
       <Router>{routes}</Router>
-      <AuthModal hide={() => {}} isOpened={false} />
+      <AuthModal />
     </AuthContext.Provider>
   )
 }

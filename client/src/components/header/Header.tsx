@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './header.module.css'
-import { IUserProps, IOpenerProps } from '../../component.props'
+import { IHeaderProps } from '../../component.props'
 import { HeaderAuth } from '../headerAuth/HeaderAuth'
 
-export const Header: React.FC<IUserProps & IOpenerProps> = (props) => {
+export const Header: React.FC<IHeaderProps> = (props) => {
   return (
     <header
       className={`${styles.header} row text-center text-white align-items-center`}
@@ -17,8 +17,8 @@ export const Header: React.FC<IUserProps & IOpenerProps> = (props) => {
         <nav className={styles.menu}>
           <ul className={styles.menu_items_list}>
             <li className={styles.menu_item}>
-              <a href='#p1' className={styles.menu_item_link}>
-                Page 1
+              <a href='/recipes' className={styles.menu_item_link}>
+                Рецепты
               </a>
             </li>
             <li className={styles.menu_item}>

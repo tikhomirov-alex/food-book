@@ -10,6 +10,8 @@ export const IconInput: React.FC<IIconInput> = (props) => {
         placeholder={props.placeholder}
         id={props.id}
         name={props.name}
+        required={props.required}
+        autoComplete='on'
         onChange={props.onChange}
       />
       <i className={props.iconClasses} aria-hidden='true'></i>

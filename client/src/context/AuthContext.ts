@@ -7,4 +7,5 @@ export const AuthContext: React.Context<AuthData> = createContext<AuthData>({
   login: () => {},
   logout: () => {},
   isAuthenticated: false,
+  username: null
 })

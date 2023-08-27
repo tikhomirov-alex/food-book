@@ -16,15 +16,20 @@ export const signup: Controller = async (req, res) => {
 
     const { email, password, username, firstname, lastname } = req.body
 
-    const userAlreadyExists = await User.findOne({ email })
-    if (userAlreadyExists) {
-      return res.status(400).json({ msg: 'User already exists.' })
+    const emailExists = await User.findOne({ email })
+    if (emailExists) {
+      return res.status(400).json({ msg: 'This email already uses.' })
     }
 
-    let name: string = '@' + username
-    if (!username) {
-      const usersCount = User.count()
-      name = `@user${usersCount}`
+    let name = username
+    if (name) {
+      const usernameExists = await User.findOne({ username })
+      if (usernameExists) {
+        return res.status(400).json({ msg: 'This username already uses.' })
+      }
+    } else {
+      const userNumber = await User.count() + 1
+      name = `user${userNumber}`
     }
 
     const saltRounds = 10
@@ -34,17 +39,26 @@ export const signup: Controller = async (req, res) => {
       email,
       password: hashedPassword,
       firstname,
-      lastname
+      lastname,
     })
 
     await user.save()
 
-    const secret = process.env.JWT_SECRET || 'jwt_secret'
+    const secret = process.env.JWT_SECRET
+    if (!secret) {
+      console.log(`Envvar JWT_SECRET is empty`)
+      return res.status(500).json({ msg: 'Server error' })
+    }
     const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '4h' })
 
     res
       .status(201)
-      .json({ token, userId: user.id, msg: `User ${name} created.` })
+      .json({
+        token,
+        userId: user.id,
+        username: name,
+        msg: `User ${name} created.`,
+      })
   } catch (err) {
     res.status(500).json({ msg: `Server error: ${err}` })
   }
@@ -52,8 +66,6 @@ export const signup: Controller = async (req, res) => {
 
 export const login: Controller = async (req, res) => {
   try {
-    console.log(req.body)
-
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -78,7 +90,7 @@ export const login: Controller = async (req, res) => {
 
     const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '4h' })
 
-    res.json({ token, userId: user.id })
+    res.json({ token, userId: user.id, username: user.username })
   } catch (err) {
     res.status(500).json({ msg: `Server error: ${err}` })
   }

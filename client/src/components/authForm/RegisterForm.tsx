@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import styles from './loginForm.module.css'
+import styles from './registerForm.module.css'
 import { IconInput } from '../iconInput/IconInput'
 import { useHttp } from '../../hooks/http.hook'
 import { AuthContext } from '../../context/AuthContext'
@@ -17,6 +17,9 @@ export const RegisterForm: React.FC = () => {
   })
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.name === 'repeat') {
+      return
+    }
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
@@ -25,8 +28,8 @@ export const RegisterForm: React.FC = () => {
       const data: UserData = await request('/api/auth/register', 'post', {
         ...form,
       })
-      if (data.token && data.userId) {
-        auth.login(data.token, data.userId)
+      if (data && data.token && data.userId && data.username) {
+        auth.login(data.token, data.userId, data.username)
       }
     } catch (err: any) {}
   }
@@ -34,12 +37,15 @@ export const RegisterForm: React.FC = () => {
   return (
     <form className='text-white'>
       <div className='mb-1'>
-        <label htmlFor='reg-email'>Email</label>
+        <label htmlFor='reg-email' className={styles.required}>
+          Email
+        </label>
         <IconInput
           iconClasses='fa-solid fa-envelope'
           inputType='text'
           placeholder='name@example.com'
           name='email'
+          required={true}
           id='reg-email'
           onChange={changeHandler}
         />
@@ -51,16 +57,21 @@ export const RegisterForm: React.FC = () => {
           inputType='text'
           placeholder='username'
           id='reg-username'
+          name='username'
           onChange={changeHandler}
         />
       </div>
       <div className='mb-1'>
-        <label htmlFor='reg-name'>Name</label>
+        <label htmlFor='reg-name' className={styles.required}>
+          Name
+        </label>
         <IconInput
           iconClasses='fa-solid fa-user'
           inputType='text'
           placeholder='your first name'
+          required={true}
           id='reg-name'
+          name='firstname'
           onChange={changeHandler}
         />
       </div>
@@ -71,26 +82,35 @@ export const RegisterForm: React.FC = () => {
           inputType='text'
           placeholder='your last name'
           id='reg-surname'
+          name='lastname'
           onChange={changeHandler}
         />
       </div>
       <div className='mb-1'>
-        <label htmlFor='reg-password'>Password</label>
+        <label htmlFor='reg-password' className={styles.required}>
+          Password
+        </label>
         <IconInput
           iconClasses='fa-solid fa-lock'
           inputType='password'
           placeholder='input password'
           id='reg-password'
+          required={true}
+          name='password'
           onChange={changeHandler}
         />
       </div>
       <div className='mb-1'>
-        <label htmlFor='reg-repeat'>Repeat password</label>
+        <label htmlFor='reg-repeat' className={styles.required}>
+          Repeat password
+        </label>
         <IconInput
           iconClasses='fa-solid fa-lock'
           inputType='password'
           placeholder='repeat password'
           id='reg-repeat'
+          required={true}
+          name='repeat'
           onChange={changeHandler}
         />
       </div>
@@ -100,6 +120,7 @@ export const RegisterForm: React.FC = () => {
           type='submit'
           onClick={registerHandler}
           value='Зарегистрироваться'
+          disabled={loading}
         />
       </div>
     </form>

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import styles from './loginForm.module.css'
-import { IOpenableProps } from '../../component.props'
 import { IconInput } from '../iconInput/IconInput'
 import { useHttp } from '../../hooks/http.hook'
 import { AuthContext } from '../../context/AuthContext'
@@ -23,8 +22,9 @@ export const LoginForm: React.FC = () => {
       const data: UserData = await request('/api/auth/login', 'post', {
         ...form,
       })
-      if (data.token && data.userId) {
-        auth.login(data.token, data.userId)
+      console.log(data)
+      if (data.token && data.userId && data.username) {
+        auth.login(data.token, data.userId, data.username)
       }
     } catch (err: any) {}
   }
@@ -42,7 +42,7 @@ export const LoginForm: React.FC = () => {
           onChange={changeHandler}
         />
       </div>
-      <div className='mb-3'>
+      <div className='mb-1'>
         <label htmlFor='login-password'>Password</label>
         <IconInput
           iconClasses='fa-solid fa-lock'

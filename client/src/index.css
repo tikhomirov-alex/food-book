@@ -12,3 +12,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+[data-bs-theme='darkblue'] {
+  --bs-body-color: #fff;
+  --bs-body-bg: #0d3674;
+
+  .nav-link {
+    --bs-nav-link-color: #fff;
+    outline: none;
+    border: none;
+  }
+
+  .nav-link.active {
+    color: #fff;
+    border-bottom: 4px solid #bd1ea8;
+  }
+
+  .nav-link:hover {
+    color: #eee;
+  }
+}
