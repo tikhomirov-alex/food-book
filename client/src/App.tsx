@@ -10,7 +10,8 @@ import { AuthModal } from './components/authForm/AuthModal'
 function App() {
   const { token, login, logout, userId, username } = useAuth()
   const isAuthenticated = !!token
-  const routes = getRoutes(isAuthenticated)
+  const isAdmin = username === 'admin'
+  const routes = getRoutes(isAuthenticated, isAdmin)
 
   return (
     <AuthContext.Provider

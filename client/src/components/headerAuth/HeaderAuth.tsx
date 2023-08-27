@@ -1,6 +1,5 @@
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { IHeaderProps } from '../../component.props'
-import { useHttp } from '../../hooks/http.hook'
 import { AuthContext } from '../../context/AuthContext'
 import style from './headerAuth.module.css'
 
@@ -27,7 +26,7 @@ export const HeaderAuth: React.FC<IHeaderProps> = (props) => {
             data-bs-auto-close='outside'
             aria-expanded='false'
           >
-            {props.username}
+            {auth.username}
           </div>
           <ul className='dropdown-menu'>
             <li>
@@ -40,6 +39,13 @@ export const HeaderAuth: React.FC<IHeaderProps> = (props) => {
                 Мои рецепты
               </a>
             </li>
+            {auth.username === 'admin' ? (
+              <li>
+                <a className='dropdown-item' href='/dashboard'>
+                  Панель управления
+                </a>
+              </li>
+            ) : null}
             <li>
               <a className='dropdown-item' href='/' onClick={logoutHandler}>
                 Выйти

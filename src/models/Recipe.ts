@@ -3,7 +3,7 @@ import { Schema, Types, model } from 'mongoose'
 const RecipeSchema = new Schema(
   {
     title: String,
-    photo: String,
+    photos: [String],
     description: String,
     composition: [
       {

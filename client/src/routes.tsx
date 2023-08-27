@@ -2,15 +2,17 @@ import { Routes, Route } from 'react-router-dom'
 import { MainPage } from './pages/mainPage/MainPage'
 import { CreateRecipePage } from './pages/createRecipePage/CreateRecipePage'
 import { RecipesPage } from './pages/recipesPage/RecipesPage'
-import { Page404 } from './pages/page404/Page404'
+import { Dashboard } from './pages/dashboard/Dashboard'
 
-export const getRoutes = (isUser: boolean) => {
+export const getRoutes = (isUser: boolean, isAdmin: boolean = false) => {
   if (isUser) {
     return (
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/recipes' element={<RecipesPage />} />
         <Route path='/create' element={<CreateRecipePage />} />
+
+        {isAdmin ? <Route path='/dashboard' element={<Dashboard />} /> : null}
       </Routes>
     )
   }

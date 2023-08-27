@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import styles from './registerForm.module.css'
 import { IconInput } from '../iconInput/IconInput'
 import { useHttp } from '../../hooks/http.hook'
 import { AuthContext } from '../../context/AuthContext'
@@ -37,7 +36,7 @@ export const RegisterForm: React.FC = () => {
   return (
     <form className='text-white'>
       <div className='mb-1'>
-        <label htmlFor='reg-email' className={styles.required}>
+        <label htmlFor='reg-email' className='required'>
           Email
         </label>
         <IconInput
@@ -62,7 +61,7 @@ export const RegisterForm: React.FC = () => {
         />
       </div>
       <div className='mb-1'>
-        <label htmlFor='reg-name' className={styles.required}>
+        <label htmlFor='reg-name' className='required'>
           Name
         </label>
         <IconInput
@@ -87,7 +86,7 @@ export const RegisterForm: React.FC = () => {
         />
       </div>
       <div className='mb-1'>
-        <label htmlFor='reg-password' className={styles.required}>
+        <label htmlFor='reg-password' className='required'>
           Password
         </label>
         <IconInput
@@ -101,7 +100,7 @@ export const RegisterForm: React.FC = () => {
         />
       </div>
       <div className='mb-1'>
-        <label htmlFor='reg-repeat' className={styles.required}>
+        <label htmlFor='reg-repeat' className='required'>
           Repeat password
         </label>
         <IconInput

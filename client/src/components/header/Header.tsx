@@ -31,11 +31,13 @@ export const Header: React.FC<IHeaderProps> = (props) => {
                 Page 3
               </a>
             </li>
-            <li className={styles.menu_item}>
-              <a href='#p4' className={styles.menu_item_link}>
-                Page 4
-              </a>
-            </li>
+            {props.userId ? (
+              <li className={styles.menu_item}>
+                <a href='/create' className={styles.menu_item_link}>
+                  Добавить рецепт
+                </a>
+              </li>
+            ) : null}
           </ul>
         </nav>
       </div>

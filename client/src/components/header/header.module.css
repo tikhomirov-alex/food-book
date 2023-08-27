@@ -1,5 +1,5 @@
 .header {
-  background-color: #1c1c1c;
+  background-color: var(--site-dark);
   padding: 15px 0;
   position: sticky;
   top: 0;
@@ -28,6 +28,6 @@
 }
 
 .menu_item_link {
-  color: #fff;
+  color: var(--site-white);
   text-decoration: none;
 }

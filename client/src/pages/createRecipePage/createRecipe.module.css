@@ -1,0 +1,10 @@
+label {
+  font-size: 15pt;
+}
+
+.recipe_photos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+}
