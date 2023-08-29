@@ -6,11 +6,11 @@ export const useHttp = () => {
   const [error, setError] = useState<string>('')
 
   const request = useCallback(
-    async (url: string, method: Method = 'get', body: any = null, headers: any = {}) => {
+    async (url: string, method: Method = 'get', body: any = null, isJson: boolean = true, headers: any = {}) => {
       setLoading(true)
       try {
 
-        if (body) {
+        if (body && isJson) {
           body = JSON.stringify(body)
           headers['Content-Type'] = 'application/json'
         }

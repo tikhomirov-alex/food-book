@@ -19,10 +19,9 @@ export const CreateRecipePage: React.FC = () => {
               Фотографии готового блюда
             </label>
             <div className={styles.recipe_photos}>
-              <ImageLoader />
-              <ImageLoader />
-              <ImageLoader />
-              <ImageLoader />
+              <ImageLoader width='200px' height='200px' />
+              <ImageLoader width='200px' height='200px' />
+              <ImageLoader width='200px' height='200px' />
             </div>
           </div>
         </div>

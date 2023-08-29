@@ -1,5 +1,6 @@
 import { routes as authRoutes } from './auth.routes'
 import { routes as commentRoutes } from './comment.routes'
+import { routes as fileRoutes } from './file.routes'
 import { routes as ingredientRoutes } from './ingredient.routes'
 import { routes as ingredientCategoryRoutes } from './ingredientCategory.routes'
 import { routes as ingredientGroupRoutes } from './ingredientGroup.routes'
@@ -14,6 +15,7 @@ import { routes as userRoutes } from './user.routes'
 export const routes = [
   ...authRoutes,
   ...commentRoutes,
+  ...fileRoutes,
   ...ingredientRoutes,
   ...ingredientCategoryRoutes,
   ...ingredientGroupRoutes,
